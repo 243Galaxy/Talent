@@ -48,7 +48,7 @@
 
 <script>
     $(document).ready(function(){
-        $('.approve_user').on('submit', function(){
+        $('.delete_form').on('submit', function(){
             if(confirm("Are you sure you want to Approve it?"))
             {
                 return true;
