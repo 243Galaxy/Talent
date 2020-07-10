@@ -7,5 +7,6 @@ use Laravel\Scout\Searchable;
 
 class Talent extends Model
 {
-  
+  	protected $table = 'talents';
+  	protected $fillable = ['status'];
 }
