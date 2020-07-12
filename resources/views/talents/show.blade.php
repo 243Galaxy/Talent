@@ -9,6 +9,7 @@
             <h1> {{ $talent->name }}</h1>
         </div>
         <div class="w3-row w3-center">
+            <div class="w3-col l6 w3-input w3-border w3-round w3-margin-right"> <h4>Status: <br> {{ $talent->statusText }}</h4> </div>
             <div class="w3-col l6 w3-input w3-border w3-round w3-margin-right"> <h4>Address: <br> {{ $talent->address }}</h4> </div>
             <div class="w3-col l5 w3-input w3-border w3-round"> <h4>Phone Number: <br> {{ $talent->phone }}</h4> </div>
         </div>

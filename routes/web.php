@@ -19,9 +19,23 @@ Route::get('/', function () {
 });
 
 Route::get('/talents', 'TalentController@index');
-Route::get('/talents/approved', 'TalentController@approved');
-Route::post('/talents/{id}', 'TalentController@button');
+Route::post('/talents{id}', 'TalentController@button');
 Route::get('talents/create', 'TalentController@create');
 Route::post('/talents', 'TalentController@store');
 Route::get('/talents/{id}', 'TalentController@show');
 
+
+Route::prefix('admin')
+    ->name('admin.')
+    ->group(function(){
+        Route::prefix('talents')
+            ->name('talents.')
+            ->group(function(){
+                Route::get('/', 'Admin\TalentPanelController@index')->name('index');
+                Route::get('approved', 'Admin\TalentPanelController@approved')->name('approved');
+                Route::get('unapproved', 'Admin\TalentPanelController@unapproved')->name('unapproved');
+                //Actions
+                Route::get('{talentId}/approve', 'Admin\TalentPanelController@doApprove')->name('approve');
+                Route::get('{talentId}/unapprove', 'Admin\TalentPanelController@doUnApprove')->name('unapprove');
+            });
+    });

@@ -20,14 +20,14 @@ class TalentController extends Controller
        
     }
 
-    public function button(Request $request, $id)
+    public function button(Request $request)
     {
 
-        $talents = Talent::find($id)->update([
-            'status' => 1
-        ]);
-        return redirect('/talents')->with('mssg', 'Approved');
+        $talents = Talent::table('talents')
+                        ->update(['status' => 1]);
 
+         $talents->save();
+        return view('talents.index')->with('mssg', 'Approved!');
     }
 
     public function approved()
@@ -137,7 +137,8 @@ class TalentController extends Controller
     
     public function show ($id) {
         $talent = Talent::findOrFail($id);
-
+        $talent->statusText = $talent->status == 0 ? 'Un-Approved' : 'Approved';
+        
         return view('talents.show', ['talent' => $talent]);
     }
 

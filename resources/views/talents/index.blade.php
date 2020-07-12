@@ -28,17 +28,13 @@
                     <a href="/talents/{{ $talent->id }}" class="w3-text-black">View</a></div></td>
                    <td><a href="/talents/{{ $talent->id}}/edit" class="w3-button w3-small w3-btn w3-round w3-yellow">Edit</a></td> 
                 <td>
-                    <!-- <form action="/talents/ {{ $talent->id }}" class="delete_form" method="POST">
+                    <form action="/talents/ {{ $talent->id }}" class="delete_form" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="w3-red w3-btn w3-button w3-round">Reject</button> <br><br>
-                    </form> -->
+                    </form>
                 </td>
-                <td><form action="/talents/ {{ $talent->id }}" method="POST">
-                    @csrf
-                    
-                    <button type="submit" class="approve_user">Approve</button>
-                </td>
+                <td><a href="/talents">approve</a></td>
                 </tr>
             @endforeach
         </tbody>
@@ -49,7 +45,7 @@
 <script>
     $(document).ready(function(){
         $('.delete_form').on('submit', function(){
-            if(confirm("Are you sure you want to Approve it?"))
+            if(confirm("Are you sure you want to disapprove it?"))
             {
                 return true;
             }
@@ -60,6 +56,22 @@
         });
     });
 
+    $(function(){
+        $('.toggle-class').change(function(){
+            var status = $(this).prop('checked') == true ? 1:0;
+            var id = $(this).data('id');
+
+            $.ajax({
+                type: GET,
+                dataType: "json",
+                url: '/changeStatus',
+                data: {'status': status, 'id': id},
+                success: function(data){
+                    console.log(data.success)
+                }
+            });
+        })
+    })
 </script>
 
 @endsection
