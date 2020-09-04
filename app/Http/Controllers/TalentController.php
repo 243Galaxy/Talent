@@ -23,7 +23,7 @@ class TalentController extends Controller
     public function button(Request $request, $id)
     {
 
-        $talents = Talent::find($id)->update([
+        Talent::find($id)->update([
             'status' => 1
         ]);
         return redirect('/talents')->with('mssg', 'Approved');

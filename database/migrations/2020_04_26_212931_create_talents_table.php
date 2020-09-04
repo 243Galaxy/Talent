@@ -33,6 +33,7 @@ class CreateTalentsTable extends Migration
             $table->string('year1');
             $table->string('year2');
             $table->string('year3');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

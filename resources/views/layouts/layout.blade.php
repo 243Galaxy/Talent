@@ -2,22 +2,27 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>{{env('APP_NAME')}} - @yield('title')</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" href="{{ url ('css/w3.css') }}">
-        <link rel="stylesheet" href="{{ url ('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url ('css/css/all.css') }}">
-        <script src="{{ url('css/w3.js')}}"></script>
-        <script src="{{ url('js/bootstrap.min.js')}}"></script>
-        <script src="{{ url('js/jquery.min.js')}}"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{{ url ('asset/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url ('asset/css/w3.css') }}">
+        <link rel="stylesheet" href="{{ url ('asset/css/all.min.css') }}">
+        <script src="{{ url('asset/js/jquery-3.5.1.min.js')}}"></script>
+        <script src="{{ url('asset/css/w3.js')}}"></script>
+        <script src="{{ url('asset/js/bootstrap.bundle.min.js')}}"></script>
+        <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+    </script>
         <!-- Styles -->
     <!--    <style>
             html, body {
@@ -89,6 +94,9 @@
            </div>
        </div>
         @yield('content')
+
+        @yield('script')
+        
         <div class="w3-row w3-bottom w3-center w3-footer">&copy; <i>Talent Propessional Builders</i> </div>
     </body>
 </html>
